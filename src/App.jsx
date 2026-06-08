@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import Lenis from 'lenis';
@@ -74,23 +74,23 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-brand-cream text-brand-charcoal relative antialiased selection:bg-brand-teal selection:text-white">
+    <div className="min-h-screen bg-brand-bg-deep text-brand-text-primary relative antialiased selection:bg-brand-accent-gold selection:text-brand-bg-deep">
       {/* 1. Pre-loader overlay */}
       {loading && (
-        <div className="preloader-container fixed inset-0 bg-brand-cream z-[999999] flex flex-col items-center justify-center">
+        <div className="preloader-container fixed inset-0 bg-brand-bg-deep z-[999999] flex flex-col items-center justify-center">
           {/* Logo assembly particle placeholder drawing */}
-          <svg className="w-24 h-24 mb-6" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+          <svg className="w-24 h-24 mb-6 animate-[pulse_2s_infinite]" viewBox="0 0 100 100" fill="none" stroke="currentColor">
             <path 
               className="draw-path" 
               d="M20 20 L80 20 L80 80 L20 80 Z M20 50 L80 50 M50 20 L50 80" 
-              stroke="#2A9D8F" 
+              stroke="#d4af37" 
               strokeWidth="2" 
             />
           </svg>
-          <div className="font-display text-2xl tracking-widest text-brand-charcoal uppercase animate-[pulse_1.5s_infinite]">
-            DEVIN<span className="text-brand-teal">EDGE</span>
+          <div className="font-display text-2xl tracking-widest text-brand-text-primary uppercase">
+            DEVIN<span className="text-brand-accent-gold animate-pulse">EDGE</span>
           </div>
-          <span className="text-[9px] text-brand-slate tracking-wider uppercase mt-4 opacity-50">Loading your experience...</span>
+          <span className="text-[10px] text-brand-text-secondary tracking-widest uppercase mt-4 opacity-60">Preparing Premium Experience</span>
         </div>
       )}
 

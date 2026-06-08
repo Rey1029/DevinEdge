@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 export default function ThreeGlobe() {
@@ -28,10 +28,10 @@ export default function ThreeGlobe() {
     // Create 3D Outer Wireframe Globe (Icosahedron)
     const outerGeo = new THREE.IcosahedronGeometry(2.5, 1);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x2a9d8f,
+      color: 0xd4af37,
       wireframe: true,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.5,
     });
     const outerMesh = new THREE.Mesh(outerGeo, outerMat);
     scene.add(outerMesh);
@@ -39,7 +39,7 @@ export default function ThreeGlobe() {
     // Create 3D Inner Wireframe Globe
     const innerGeo = new THREE.IcosahedronGeometry(1.6, 1);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0xe07a5f,
+      color: 0x7c3aed,
       wireframe: true,
       transparent: true,
       opacity: 0.25,
@@ -66,10 +66,10 @@ export default function ThreeGlobe() {
 
     pointsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const pointsMat = new THREE.PointsMaterial({
-      color: 0x2a9d8f,
+      color: 0x06b6d4,
       size: 0.04,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.7,
     });
     const points = new THREE.Points(pointsGeo, pointsMat);
     scene.add(points);

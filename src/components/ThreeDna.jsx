@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 export default function ThreeDna() {
@@ -33,9 +33,9 @@ export default function ThreeDna() {
     const dnaGroup = new THREE.Group();
 
     const sphereGeo = new THREE.SphereGeometry(0.06, 12, 12);
-    const blueMat = new THREE.MeshBasicMaterial({ color: 0x2a9d8f });
-    const goldMat = new THREE.MeshBasicMaterial({ color: 0xe07a5f });
-    const lineMat = new THREE.LineBasicMaterial({ color: 0x2a9d8f, transparent: true, opacity: 0.3 });
+    const blueMat = new THREE.MeshBasicMaterial({ color: 0xd4af37 });
+    const goldMat = new THREE.MeshBasicMaterial({ color: 0x7c3aed });
+    const lineMat = new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.25 });
 
     // Arrays to hold coordinates for lines
     const pointsStrand1 = [];

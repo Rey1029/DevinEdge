@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
 export default function MagneticButton({ children, className = "", strength = 25, range = 80, ...props }) {

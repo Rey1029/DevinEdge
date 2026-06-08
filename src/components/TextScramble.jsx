@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const GLYPHS = '01X$%@#&*-=+?';
 
@@ -6,7 +6,7 @@ export default function TextScramble({ text, className = "", delay = 0 }) {
   const [displayText, setDisplayText] = useState(text);
   const frameRef = useRef(null);
   
-  const scramble = () => {
+  const scramble = useCallback(() => {
     let iteration = 0;
     cancelAnimationFrame(frameRef.current);
     
@@ -30,7 +30,7 @@ export default function TextScramble({ text, className = "", delay = 0 }) {
     };
     
     tick();
-  };
+  }, [text]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,7 +41,7 @@ export default function TextScramble({ text, className = "", delay = 0 }) {
       clearTimeout(timer);
       cancelAnimationFrame(frameRef.current);
     };
-  }, [text, delay]);
+  }, [scramble, delay]);
 
   return (
     <span 

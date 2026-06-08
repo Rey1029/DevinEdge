@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check, Plus, Minus } from 'lucide-react';
 import MagneticButton from '../components/MagneticButton';
@@ -6,13 +6,13 @@ import MagneticButton from '../components/MagneticButton';
 // Reusable FAQ Accordion Component
 function FaqItem({ question, answer, isOpen, onClick }) {
   return (
-    <div className="border-b border-brand-charcoal/8 py-5 text-left">
+    <div className="border-b border-brand-border/40 py-5 text-left">
       <button 
         onClick={onClick}
-        className="w-full flex justify-between items-center text-left font-display text-lg tracking-wider text-brand-charcoal hover:text-brand-coral transition-colors duration-300 py-2 interactive"
+        className="w-full flex justify-between items-center text-left font-display text-lg tracking-wide text-brand-text-primary hover:text-brand-accent-gold transition-colors duration-300 py-2 interactive"
       >
         <span>{question}</span>
-        <span className="text-brand-teal ml-4">
+        <span className="text-brand-accent-gold ml-4">
           {isOpen ? <Minus size={18} /> : <Plus size={18} />}
         </span>
       </button>
@@ -22,7 +22,7 @@ function FaqItem({ question, answer, isOpen, onClick }) {
           isOpen ? 'max-h-[300px] opacity-100 mt-3' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-sm text-brand-slate leading-relaxed pr-6">{answer}</p>
+        <p className="text-sm text-brand-text-secondary leading-relaxed pr-6">{answer}</p>
       </div>
     </div>
   );
@@ -68,7 +68,7 @@ export default function Pricing() {
         'Speed Performance optimization'
       ],
       cta: 'Choose Growth',
-      highlighted: true // highlighted Growth card
+      highlighted: true
     },
     {
       name: 'Elite',
@@ -112,41 +112,41 @@ export default function Pricing() {
     },
     {
       q: 'How long does a typical redesign project take?',
-      a: 'Typically, Landing Page packages take 1 week. Core business websites take 3-4 weeks, E-commerce platforms take 5-6 weeks, and full custom SaaS/Enterprise builds take 8+ weeks depending on feature specifications.'
+      a: 'Typically, Landing Page packages take 2 weeks. Core business websites take 4 weeks, E-commerce platforms take 6 weeks, and full custom SaaS/Enterprise builds take 8+ weeks depending on feature specifications.'
     }
   ];
 
   return (
-    <div className="w-full bg-brand-cream pt-32 pb-24 relative overflow-hidden z-10">
+    <div className="w-full bg-brand-bg-deep pt-32 pb-24 relative overflow-hidden z-10">
       {/* Page Header */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-center flex flex-col items-center">
-        <span className="text-xs uppercase tracking-widest text-brand-teal font-semibold">PRICING TIERS</span>
-        <h1 className="font-display font-bold text-4xl md:text-7xl tracking-wider text-brand-charcoal mt-4 max-w-4xl uppercase">
+        <span className="text-xs uppercase tracking-widest text-brand-accent-gold font-semibold">PRICING TIERS</span>
+        <h1 className="font-display font-semibold text-4xl md:text-6xl tracking-tight text-brand-text-primary mt-4 max-w-4xl uppercase">
           TRANSPARENT PRICING.<br />
-          <span className="text-brand-teal">ZERO SURPRISES.</span>
+          <span className="text-brand-accent-gold">ZERO SURPRISES.</span>
         </h1>
-        <div className="h-[2px] bg-brand-teal mt-6 w-32" />
+        <div className="h-[2px] bg-gradient-to-r from-brand-accent-gold to-transparent mt-6 w-32" />
       </section>
 
       {/* Retainer Toggle */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 mb-20 flex justify-center">
-        <div className="bg-white border border-brand-charcoal/8 p-1 flex rounded-sm relative z-10">
+        <div className="bg-brand-bg-card border border-brand-border/40 p-1 flex rounded relative z-10">
           <button
             onClick={() => setBillingCycle('one-time')}
-            className={`px-6 py-2.5 text-xs uppercase tracking-widest font-semibold rounded-sm transition-all duration-300 interactive ${
+            className={`px-6 py-2.5 text-xs uppercase tracking-widest font-semibold rounded transition-all duration-305 interactive ${
               billingCycle === 'one-time'
-                ? 'bg-brand-teal text-white shadow-md'
-                : 'text-brand-slate hover:text-brand-charcoal'
+                ? 'bg-brand-accent-gold text-brand-bg-deep shadow-md'
+                : 'text-brand-text-secondary hover:text-brand-text-primary'
             }`}
           >
             One-Time Project
           </button>
           <button
             onClick={() => setBillingCycle('retainer')}
-            className={`px-6 py-2.5 text-xs uppercase tracking-widest font-semibold rounded-sm transition-all duration-300 interactive ${
+            className={`px-6 py-2.5 text-xs uppercase tracking-widest font-semibold rounded transition-all duration-305 interactive ${
               billingCycle === 'retainer'
-                ? 'bg-brand-teal text-white shadow-md'
-                : 'text-brand-slate hover:text-brand-charcoal'
+                ? 'bg-brand-accent-gold text-brand-bg-deep shadow-md'
+                : 'text-brand-text-secondary hover:text-brand-text-primary'
             }`}
           >
             Monthly Retainer
@@ -156,48 +156,48 @@ export default function Pricing() {
 
       {/* Pricing Cards Grid */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 mb-36 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {pricingTiers.map((tier, i) => (
             <div 
               key={i}
-              className={`bg-white border rounded-sm p-8 md:p-10 flex flex-col justify-between relative transition-all duration-500 hover:-translate-y-2 ${
+              className={`glass-panel border rounded p-8 md:p-10 flex flex-col justify-between relative transition-all duration-500 hover:-translate-y-1.5 ${
                 tier.highlighted 
-                  ? 'border-brand-teal shadow-lg lg:scale-105' 
-                  : 'border-brand-charcoal/8 hover:border-brand-coral'
+                  ? 'border-brand-accent-gold shadow-lg shadow-brand-accent-gold/5 lg:scale-105 glow-gold' 
+                  : 'border-brand-border/40 hover:border-brand-accent-gold/40'
               }`}
             >
               {/* Highlight Badge */}
               {tier.highlighted && (
-                <span className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-brand-coral text-white text-[10px] tracking-widest uppercase font-bold py-1 px-4 rounded-sm shadow-md">
+                <span className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-brand-accent-purple text-brand-text-primary text-[9px] tracking-widest uppercase font-semibold py-1 px-4 rounded shadow-md border border-brand-accent-purple/20">
                   Most Popular
                 </span>
               )}
 
               {/* Price Details */}
               <div className="text-left">
-                <h3 className={`font-display text-3xl tracking-widest uppercase ${
-                  tier.highlighted ? 'text-brand-teal' : 'text-brand-charcoal'
+                <h3 className={`font-display text-2xl tracking-widest uppercase ${
+                  tier.highlighted ? 'text-brand-accent-gold' : 'text-brand-text-primary'
                 }`}>{tier.name}</h3>
                 
                 <div className="mt-4 flex items-baseline gap-2">
-                  <span className="font-display text-5xl md:text-6xl font-bold text-brand-charcoal transition-all duration-500">
+                  <span className="font-display text-5xl md:text-6xl font-semibold text-brand-text-primary transition-all duration-500">
                     {billingCycle === 'one-time' ? tier.oneTimePrice : tier.monthlyPrice}
                   </span>
-                  <span className="text-xs text-brand-slate uppercase tracking-widest font-semibold">
-                    {billingCycle === 'one-time' ? 'Project' : '/Month'}
+                  <span className="text-[10px] text-brand-text-secondary uppercase tracking-widest font-semibold">
+                    {billingCycle === 'one-time' ? 'Project' : ''}
                   </span>
                 </div>
                 
-                <p className="text-sm text-brand-slate mt-6 leading-relaxed min-h-[72px]">
+                <p className="text-sm text-brand-text-secondary mt-6 leading-relaxed min-h-[72px]">
                   {tier.desc}
                 </p>
 
                 {/* Features checklist */}
-                <div className="h-[1px] bg-brand-charcoal/8 my-6" />
-                <ul className="flex flex-col gap-3.5 text-sm text-brand-slate">
+                <div className="h-[1px] bg-brand-border/40 my-6" />
+                <ul className="flex flex-col gap-3.5 text-sm text-brand-text-secondary">
                   {tier.features.map((feat, idx) => (
                     <li key={idx} className="flex gap-3 items-start">
-                      <Check size={16} className="text-brand-teal mt-0.5 flex-shrink-0" />
+                      <Check size={16} className="text-brand-accent-gold mt-0.5 flex-shrink-0" />
                       <span>{feat}</span>
                     </li>
                   ))}
@@ -208,10 +208,10 @@ export default function Pricing() {
               <div className="mt-10">
                 <Link
                   to={`/contact?package=${tier.name.toLowerCase()}&billing=${billingCycle}`}
-                  className={`w-full py-4 text-xs uppercase tracking-widest font-bold block text-center rounded-sm transition-all duration-300 interactive ${
+                  className={`w-full py-4 text-xs uppercase tracking-widest font-semibold block text-center rounded transition-all duration-300 interactive ${
                     tier.highlighted
-                      ? 'bg-brand-teal text-white hover:bg-brand-coral hover:text-white hover:shadow-lg'
-                      : 'bg-brand-sand border border-brand-charcoal/10 text-brand-charcoal hover:border-brand-coral hover:text-brand-coral'
+                      ? 'bg-brand-accent-gold text-brand-bg-deep hover:bg-brand-accent-gold-light'
+                      : 'bg-brand-bg-card border border-brand-border text-brand-text-primary hover:border-brand-accent-gold hover:text-brand-accent-gold'
                   }`}
                 >
                   {tier.cta}
@@ -225,11 +225,11 @@ export default function Pricing() {
       {/* Accordion FAQ Section */}
       <section className="max-w-4xl mx-auto px-6 md:px-12 mb-36 relative z-10">
         <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-widest text-brand-teal font-semibold">COMMON CONCERNS</span>
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-brand-charcoal tracking-widest uppercase mt-2">QUESTIONS & ANSWERS</h2>
+          <span className="text-xs uppercase tracking-widest text-brand-accent-gold font-semibold">COMMON CONCERNS</span>
+          <h2 className="font-display font-semibold text-3xl md:text-5xl text-brand-text-primary tracking-widest uppercase mt-2">QUESTIONS & ANSWERS</h2>
         </div>
 
-        <div className="border-t border-brand-charcoal/8">
+        <div className="border-t border-brand-border/40">
           {faqs.map((faq, index) => (
             <FaqItem
               key={index}
@@ -243,18 +243,18 @@ export default function Pricing() {
       </section>
 
       {/* Custom Scopes CTA */}
-      <section className="border-t border-brand-charcoal/8 pt-24 bg-brand-sand">
+      <section className="border-t border-brand-border/40 pt-24 bg-brand-bg-card">
         <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-brand-charcoal tracking-widest uppercase">
+          <h2 className="font-display font-semibold text-3xl md:text-5xl text-brand-text-primary tracking-widest uppercase">
             NEED A BESPOKE CONFIGURATION?
           </h2>
-          <p className="text-brand-slate text-base max-w-lg mb-4">
+          <p className="text-brand-text-secondary text-base max-w-lg mb-4">
             If you need an enterprise WebGL platform, a custom database structure, or specialized integrations, we will build a custom scope for you.
           </p>
           <MagneticButton>
             <Link 
               to="/contact" 
-              className="px-8 py-4 bg-brand-teal text-white text-xs uppercase tracking-widest font-semibold hover:bg-brand-coral hover:text-white hover:shadow-lg transition-all duration-300 block"
+              className="px-8 py-4 bg-brand-accent-gold text-brand-bg-deep text-xs uppercase tracking-widest font-semibold hover:bg-brand-accent-gold-light hover:shadow-lg transition-all duration-300 block rounded animate-pulse"
             >
               Book a Free Call
             </Link>

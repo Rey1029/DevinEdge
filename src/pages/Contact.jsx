@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import MagneticButton from '../components/MagneticButton';
 
@@ -30,7 +30,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Generate 50 confetti particles with random vectors
+    // Generate 60 confetti particles with random vectors
     const particles = Array.from({ length: 60 }).map((_, i) => {
       const angle = Math.random() * Math.PI * 2;
       const distance = 80 + Math.random() * 220;
@@ -39,8 +39,8 @@ export default function Contact() {
       const rot = Math.random() * 360;
       const size = 6 + Math.random() * 12;
       
-      // Alternate between cobalt blue and gold particles
-      const colors = ['#2A9D8F', '#E07A5F', '#F0EDE6'];
+      // Cyber-obsidian accent colors (gold, purple, cyan)
+      const colors = ['#d4af37', '#7c3aed', '#06b6d4'];
       const color = colors[Math.floor(Math.random() * colors.length)];
 
       return {
@@ -72,11 +72,11 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-full bg-brand-cream pt-32 pb-24 relative overflow-hidden z-10">
+    <div className="w-full bg-brand-bg-deep pt-32 pb-24 relative overflow-hidden z-10">
       {/* Page Header */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-left relative">
-        <span className="text-xs uppercase tracking-widest text-brand-teal font-semibold">GET IN TOUCH</span>
-        <h1 className="font-display font-bold text-5xl md:text-8xl tracking-wider leading-none text-brand-charcoal mt-4 flex flex-wrap select-none">
+        <span className="text-xs uppercase tracking-widest text-brand-accent-gold font-semibold">GET IN TOUCH</span>
+        <h1 className="font-display font-semibold text-5xl md:text-7xl xl:text-8xl tracking-tight leading-none text-brand-text-primary mt-4 flex flex-wrap select-none">
           {"LET'S BUILD SOMETHING GREAT.".split(' ').map((word, index) => (
             <span 
               key={index} 
@@ -86,13 +86,13 @@ export default function Contact() {
             </span>
           ))}
         </h1>
-        <div className="h-[2px] bg-brand-teal mt-6 w-32" />
+        <div className="h-[2px] bg-gradient-to-r from-brand-accent-gold to-transparent mt-6 w-32" />
       </section>
 
       {/* Main Split Layout */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
         {/* Left Form Column */}
-        <div className="lg:col-span-7 bg-white border border-brand-charcoal/8 p-8 md:p-12 rounded-sm text-left">
+        <div className="lg:col-span-7 glass-panel border border-brand-border/40 p-8 md:p-12 rounded text-left">
           <form onSubmit={handleSubmit} className="flex flex-col gap-8">
             
             {/* Input Name */}
@@ -104,12 +104,12 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="peer w-full bg-transparent border-b border-brand-charcoal/10 py-2.5 text-brand-charcoal focus:outline-none focus:border-brand-teal transition-colors duration-300 placeholder-transparent"
+                className="peer w-full bg-transparent border-b border-brand-border/40 py-2.5 text-brand-text-primary focus:outline-none focus:border-brand-accent-gold transition-colors duration-300 placeholder-transparent"
                 placeholder="Name"
               />
               <label 
                 htmlFor="form-name"
-                className="absolute left-0 top-2.5 text-sm text-brand-slate/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-teal"
+                className="absolute left-0 top-2.5 text-xs text-brand-text-secondary/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-accent-gold"
                 style={{ top: formData.name ? '-16px' : undefined, fontSize: formData.name ? '0.75rem' : undefined }}
               >
                 YOUR NAME *
@@ -125,12 +125,12 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="peer w-full bg-transparent border-b border-brand-charcoal/10 py-2.5 text-brand-charcoal focus:outline-none focus:border-brand-teal transition-colors duration-300 placeholder-transparent"
+                className="peer w-full bg-transparent border-b border-brand-border/40 py-2.5 text-brand-text-primary focus:outline-none focus:border-brand-accent-gold transition-colors duration-300 placeholder-transparent"
                 placeholder="Email"
               />
               <label 
                 htmlFor="form-email"
-                className="absolute left-0 top-2.5 text-sm text-brand-slate/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-teal"
+                className="absolute left-0 top-2.5 text-xs text-brand-text-secondary/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-accent-gold"
                 style={{ top: formData.email ? '-16px' : undefined, fontSize: formData.email ? '0.75rem' : undefined }}
               >
                 EMAIL ADDRESS *
@@ -145,12 +145,12 @@ export default function Contact() {
                 id="form-company"
                 value={formData.company}
                 onChange={handleChange}
-                className="peer w-full bg-transparent border-b border-brand-charcoal/10 py-2.5 text-brand-charcoal focus:outline-none focus:border-brand-teal transition-colors duration-300 placeholder-transparent"
+                className="peer w-full bg-transparent border-b border-brand-border/40 py-2.5 text-brand-text-primary focus:outline-none focus:border-brand-accent-gold transition-colors duration-300 placeholder-transparent"
                 placeholder="Company"
               />
               <label 
                 htmlFor="form-company"
-                className="absolute left-0 top-2.5 text-sm text-brand-slate/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-teal"
+                className="absolute left-0 top-2.5 text-xs text-brand-text-secondary/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-accent-gold"
                 style={{ top: formData.company ? '-16px' : undefined, fontSize: formData.company ? '0.75rem' : undefined }}
               >
                 COMPANY NAME (OPTIONAL)
@@ -159,33 +159,33 @@ export default function Contact() {
 
             {/* Dropdown service */}
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-[10px] text-brand-slate/50 tracking-widest uppercase">Project Type</label>
+              <label className="text-[10px] text-brand-text-secondary/50 tracking-widest uppercase">Project Type</label>
               <select
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full bg-brand-sand border border-brand-charcoal/8 py-3 px-4 text-sm text-brand-charcoal focus:outline-none focus:border-brand-teal transition-colors duration-300"
+                className="w-full bg-brand-bg-deep border border-brand-border/60 py-3 px-4 text-sm text-brand-text-primary focus:outline-none focus:border-brand-accent-gold transition-colors duration-300 rounded"
               >
-                <option value="design">Custom Website Design</option>
-                <option value="ecommerce">E-Commerce Development</option>
-                <option value="saas">SaaS Product Build</option>
-                <option value="landing">Landing Page Creation</option>
-                <option value="redesign">Website Redesign</option>
-                <option value="seo">SEO & Optimization</option>
+                <option value="design" className="bg-brand-bg-deep text-brand-text-primary">Custom Website Design</option>
+                <option value="ecommerce" className="bg-brand-bg-deep text-brand-text-primary">E-Commerce Development</option>
+                <option value="saas" className="bg-brand-bg-deep text-brand-text-primary">SaaS Product Build</option>
+                <option value="landing" className="bg-brand-bg-deep text-brand-text-primary">Landing Page Creation</option>
+                <option value="redesign" className="bg-brand-bg-deep text-brand-text-primary">Website Redesign</option>
+                <option value="seo" className="bg-brand-bg-deep text-brand-text-primary">SEO & Optimization</option>
               </select>
             </div>
 
             {/* Radio budget */}
             <div className="flex flex-col gap-3 text-left">
-              <label className="text-[10px] text-brand-slate/50 tracking-widest uppercase">Estimated Budget</label>
+              <label className="text-[10px] text-brand-text-secondary/50 tracking-widest uppercase">Estimated Budget</label>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {['<$5k', '$5k - $10k', '$10k - $25k', '$25k+'].map(tier => (
                   <label 
                     key={tier}
-                    className={`py-3 text-center text-xs uppercase tracking-widest border rounded-sm cursor-pointer transition-all duration-300 ${
+                    className={`py-3 text-center text-xs uppercase tracking-widest border rounded cursor-pointer transition-all duration-300 ${
                       formData.budget === tier
-                        ? 'bg-brand-teal border-brand-teal text-white shadow-md font-bold'
-                        : 'bg-brand-sand border-brand-charcoal/8 text-brand-slate hover:border-brand-coral'
+                        ? 'bg-brand-accent-gold border-brand-accent-gold text-brand-bg-deep shadow-md font-bold shadow-brand-accent-gold/20'
+                        : 'bg-brand-bg-card border-brand-border/40 text-brand-text-secondary hover:border-brand-accent-gold'
                     }`}
                   >
                     <input 
@@ -211,12 +211,12 @@ export default function Contact() {
                 onChange={handleChange}
                 rows="4"
                 required
-                className="peer w-full bg-transparent border-b border-brand-charcoal/10 py-2.5 text-brand-charcoal focus:outline-none focus:border-brand-teal transition-colors duration-300 placeholder-transparent resize-none"
+                className="peer w-full bg-transparent border-b border-brand-border/40 py-2.5 text-brand-text-primary focus:outline-none focus:border-brand-accent-gold transition-colors duration-300 placeholder-transparent resize-none"
                 placeholder="Message"
               />
               <label 
                 htmlFor="form-message"
-                className="absolute left-0 top-2.5 text-sm text-brand-slate/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-base peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-teal"
+                className="absolute left-0 top-2.5 text-xs text-brand-text-secondary/50 tracking-wider transition-all duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:top-2.5 peer-focus:top-[-16px] peer-focus:text-xs peer-focus:text-brand-accent-gold"
                 style={{ top: formData.message ? '-16px' : undefined, fontSize: formData.message ? '0.75rem' : undefined }}
               >
                 TELL US ABOUT THE PROJECT *
@@ -227,7 +227,7 @@ export default function Contact() {
               <MagneticButton className="w-full sm:w-auto">
                 <button 
                   type="submit"
-                  className="w-full px-8 py-4 bg-brand-teal text-white text-xs uppercase tracking-widest font-semibold hover:bg-brand-coral hover:text-white transition-colors duration-300 cursor-pointer"
+                  className="w-full px-8 py-4 bg-brand-accent-gold text-brand-bg-deep text-xs uppercase tracking-widest font-semibold hover:bg-brand-accent-gold-light transition-colors duration-300 cursor-pointer rounded shadow-lg shadow-brand-accent-gold/10 hover:shadow-brand-accent-gold/25"
                 >
                   Send Message
                 </button>
@@ -240,50 +240,50 @@ export default function Contact() {
         {/* Right Info Column */}
         <div className="lg:col-span-5 flex flex-col gap-10 text-left">
           {/* Particulars Card */}
-          <div className="bg-white border border-brand-charcoal/8 p-8 rounded-sm">
-            <h3 className="font-display text-2xl tracking-widest text-brand-charcoal uppercase mb-6">OFFICE DETAILS</h3>
+          <div className="glass-panel border border-brand-border/40 p-8 rounded">
+            <h3 className="font-display text-lg tracking-widest text-brand-text-primary uppercase mb-6">OFFICE DETAILS</h3>
             
-            <div className="flex flex-col gap-4 text-sm text-brand-slate">
+            <div className="flex flex-col gap-5 text-sm text-brand-text-secondary">
               <div>
-                <span className="text-[10px] text-brand-teal tracking-wider uppercase font-bold block">EMAIL CONNECTION</span>
-                <a href="mailto:devinedge99@gmail.com" className="text-brand-charcoal hover:text-brand-coral transition-colors duration-300">devinedge99@gmail.com</a>
+                <span className="text-[10px] text-brand-accent-gold tracking-wider uppercase font-bold block">EMAIL CONNECTION</span>
+                <a href="mailto:devinedge99@gmail.com" className="text-brand-text-primary hover:text-brand-accent-gold transition-colors duration-305">devinedge99@gmail.com</a>
               </div>
               
               <div>
-                <span className="text-[10px] text-brand-teal tracking-wider uppercase font-bold block">DIRECT LINE</span>
-                <span className="text-brand-charcoal">+91 77009 26265</span>
+                <span className="text-[10px] text-brand-accent-gold tracking-wider uppercase font-bold block">DIRECT LINE</span>
+                <span className="text-brand-text-primary">+91 77009 26265</span>
               </div>
 
               <div>
-                <span className="text-[10px] text-brand-teal tracking-wider uppercase font-bold block">HQ LOCATION</span>
-                <span className="text-brand-charcoal">Mumbai, India</span>
+                <span className="text-[10px] text-brand-accent-gold tracking-wider uppercase font-bold block">HQ LOCATION</span>
+                <span className="text-brand-text-primary">Mumbai, India</span>
               </div>
             </div>
           </div>
 
           {/* Stylized SVG Map with pin */}
-          <div className="bg-white border border-brand-charcoal/8 p-6 rounded-sm relative overflow-hidden aspect-[4/3] flex items-center justify-center">
+          <div className="glass-panel border border-brand-border/40 p-6 rounded relative overflow-hidden aspect-[4/3] flex items-center justify-center">
             {/* Pulsing glow under location */}
-            <div className="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-brand-teal opacity-40 animate-ping pointer-events-none" />
-            <div className="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-brand-coral z-10 pointer-events-none border border-brand-cream" />
+            <div className="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-brand-accent-gold opacity-30 animate-ping pointer-events-none" />
+            <div className="absolute top-1/2 left-[48%] -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-brand-accent-purple z-10 pointer-events-none border border-brand-bg-deep" />
 
             {/* Stylized grid-style world outline */}
-            <svg viewBox="0 0 400 300" className="w-full h-full opacity-20 text-brand-charcoal" fill="none" stroke="currentColor" strokeWidth="1">
+            <svg viewBox="0 0 400 300" className="w-full h-full opacity-20 text-brand-text-secondary" fill="none" stroke="currentColor" strokeWidth="1">
               {/* Abstract land shapes representation */}
               <path d="M 20 80 Q 40 50 80 60 Q 120 70 140 40 Q 160 30 180 50 Q 200 70 230 75 Q 260 80 280 60 Q 320 50 360 80 Q 380 90 390 120 Q 350 150 310 130 Q 280 120 260 140 Q 240 160 210 150 Q 180 140 170 170 Q 140 180 120 160 Q 100 140 80 150 Q 50 160 30 120 Z" />
               <path d="M 120 220 Q 140 200 160 220 Q 180 240 210 230 Q 240 220 270 250 Q 260 280 230 275 Z" />
               {/* Radar waves from the pin */}
-              <circle cx="192" cy="150" r="10" stroke="#2A9D8F" strokeWidth="0.5" className="animate-[ping_4s_infinite]" />
-              <circle cx="192" cy="150" r="30" stroke="#2A9D8F" strokeWidth="0.5" className="animate-[ping_6s_infinite]" />
+              <circle cx="192" cy="150" r="10" stroke="#d4af37" strokeWidth="0.5" className="animate-[ping_4s_infinite]" />
+              <circle cx="192" cy="150" r="30" stroke="#d4af37" strokeWidth="0.5" className="animate-[ping_6s_infinite]" />
             </svg>
-            <span className="absolute bottom-4 left-4 text-[10px] text-brand-slate/50 uppercase tracking-widest font-bold">Mumbai HQ schematic map</span>
+            <span className="absolute bottom-4 left-4 text-[9px] text-brand-text-secondary/40 uppercase tracking-widest font-bold">Mumbai HQ schematic map</span>
           </div>
         </div>
       </section>
 
       {/* FULL-SCREEN SUBMIT SUCCESS OVERLAY */}
       {submitted && (
-        <div className="fixed inset-0 bg-brand-charcoal/80 z-[999999] flex items-center justify-center p-6 backdrop-blur-md">
+        <div className="fixed inset-0 bg-brand-bg-deep/85 z-[999999] flex items-center justify-center p-6 backdrop-blur-md animate-[fade-in_0.5s_forwards]">
           {/* Confetti container */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {confetti.map((c) => (
@@ -312,20 +312,20 @@ export default function Contact() {
           `}} />
 
           {/* Dialog box */}
-          <div className="bg-white border-2 border-brand-teal p-10 md:p-16 rounded-sm max-w-lg w-full text-center flex flex-col items-center gap-6 shadow-2xl relative z-10 animate-[pulse_4s_infinite]">
-            <div className="w-20 h-20 rounded-full border border-brand-teal bg-brand-teal/8 flex items-center justify-center text-brand-teal text-4xl mb-2">
+          <div className="glass-panel border border-brand-accent-gold/25 p-10 md:p-16 rounded max-w-lg w-full text-center flex flex-col items-center gap-6 shadow-2xl glow-gold relative z-10 animate-[pulse_4s_infinite]">
+            <div className="w-16 h-16 rounded-full border border-brand-accent-gold bg-brand-accent-gold/10 flex items-center justify-center text-brand-accent-gold text-2xl mb-2">
               ✓
             </div>
-            <h2 className="font-display font-bold text-3xl md:text-5xl text-brand-charcoal tracking-widest uppercase">
-              MESSAGE SENT SUCCESSFULLY
+            <h2 className="font-display font-semibold text-2xl md:text-3xl text-brand-text-primary tracking-widest uppercase">
+              MESSAGE SENT
             </h2>
-            <p className="text-brand-slate text-sm leading-relaxed max-w-sm">
+            <p className="text-brand-text-secondary text-sm leading-relaxed max-w-sm">
               We've received your project details. We'll be in touch within 24 hours to schedule our discovery call. 🚀
             </p>
-            <div className="h-[1px] bg-brand-charcoal/8 w-full my-2" />
+            <div className="h-[1px] bg-brand-border/40 w-full my-2" />
             <button 
               onClick={handleReset}
-              className="px-8 py-3 bg-brand-teal text-white hover:bg-brand-coral hover:text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 interactive cursor-pointer"
+              className="px-8 py-3 bg-brand-accent-gold text-brand-bg-deep hover:bg-brand-accent-gold-light text-xs uppercase tracking-widest font-semibold transition-all duration-300 interactive rounded shadow-md"
             >
               Back to Contact
             </button>

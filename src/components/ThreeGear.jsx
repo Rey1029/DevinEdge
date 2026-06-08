@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 export default function ThreeGear() {
@@ -27,35 +27,35 @@ export default function ThreeGear() {
       container.appendChild(renderer.domElement);
 
       // Create 3 Nested Gyroscopic / Mechanical Rings
-      // Ring 1 (Outer - Cobalt)
+      // Ring 1 (Outer - Gold)
       ringGeo1 = new THREE.TorusGeometry(1.6, 0.12, 8, 36);
       ringMat1 = new THREE.MeshBasicMaterial({
-        color: 0x2a9d8f,
+        color: 0xd4af37,
         wireframe: true,
         transparent: true,
-        opacity: 0.15,
+        opacity: 0.2,
       });
       const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
       scene.add(ring1);
 
-      // Ring 2 (Middle - Gold)
+      // Ring 2 (Middle - Purple)
       ringGeo2 = new THREE.TorusGeometry(1.15, 0.08, 6, 28);
       ringMat2 = new THREE.MeshBasicMaterial({
-        color: 0xe07a5f,
+        color: 0x7c3aed,
         wireframe: true,
         transparent: true,
-        opacity: 0.12,
+        opacity: 0.18,
       });
       const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
       scene.add(ring2);
 
-      // Ring 3 (Inner - Cobalt)
+      // Ring 3 (Inner - Cyan)
       ringGeo3 = new THREE.TorusGeometry(0.7, 0.05, 6, 20);
       ringMat3 = new THREE.MeshBasicMaterial({
-        color: 0x2a9d8f,
+        color: 0x06b6d4,
         wireframe: true,
         transparent: true,
-        opacity: 0.20,
+        opacity: 0.22,
       });
       const ring3 = new THREE.Mesh(ringGeo3, ringMat3);
       scene.add(ring3);
@@ -63,10 +63,10 @@ export default function ThreeGear() {
       // Add a central core sphere
       coreGeo = new THREE.OctahedronGeometry(0.25, 0);
       coreMat = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
+        color: 0xd4af37,
         wireframe: true,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.3,
       });
       const core = new THREE.Mesh(coreGeo, coreMat);
       scene.add(core);
