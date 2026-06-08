@@ -266,6 +266,7 @@ export default function Home() {
               </div>
             </a>
           </div>
+        </div>
       </section>
 
       {/* Large Bold Quote Section */}
