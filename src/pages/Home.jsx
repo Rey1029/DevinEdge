@@ -201,38 +201,71 @@ export default function Home() {
           {/* Staggered project cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 */}
-          
-<a 
-  href="https://eatlikepunjabi.netlify.app/" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col md:translate-y-8 cursor-pointer"
->
- 
-</a>
+            <a 
+              href="https://eatlikepunjabi.netlify.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col md:translate-y-8 cursor-pointer"
+            >
+              <div className="aspect-[4/3] bg-gradient-to-br from-brand-accent-purple/5 to-brand-bg-card border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
+                <div className="absolute inset-0 bg-brand-bg-deep/40 group-hover:bg-transparent transition-all duration-500" />
+                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-purple/10 transition-all duration-500">PUNJABI</span>
+              </div>
+              <div className="mt-6 flex justify-between items-center">
+                <div>
+                  <h4 className="font-display text-lg tracking-wide text-brand-text-primary group-hover:text-brand-accent-gold transition-colors duration-300">Eat Like Punjabi</h4>
+                  <span className="text-xs text-brand-text-secondary uppercase tracking-wider">Restaurant · WebApp</span>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center text-brand-text-secondary group-hover:text-brand-accent-gold group-hover:border-brand-accent-gold transition-colors duration-300">
+                  →
+                </div>
+              </div>
+            </a>
+
             {/* Card 2 */}
-        
-{/* Card 2 */}
-<a 
-  href="https://tothecorefitnessgym.netlify.app/" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col cursor-pointer"
->
-  
-</a>
+            <a 
+              href="https://tothecorefitnessgym.netlify.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col cursor-pointer"
+            >
+              <div className="aspect-[4/3] bg-gradient-to-br from-brand-accent-gold/5 to-brand-bg-card border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
+                <div className="absolute inset-0 bg-brand-bg-deep/40 group-hover:bg-transparent transition-all duration-500" />
+                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-gold/10 transition-all duration-500">CORE GYM</span>
+              </div>
+              <div className="mt-6 flex justify-between items-center">
+                <div>
+                  <h4 className="font-display text-lg tracking-wide text-brand-text-primary group-hover:text-brand-accent-gold transition-colors duration-300">To The Core Fitness Gym</h4>
+                  <span className="text-xs text-brand-text-secondary uppercase tracking-wider">Fitness · Design</span>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center text-brand-text-secondary group-hover:text-brand-accent-gold group-hover:border-brand-accent-gold transition-colors duration-300">
+                  →
+                </div>
+              </div>
+            </a>
 
             {/* Card 3 */}
-        
-<a 
-  href="https://neonsnakeio.netlify.app/" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col md:translate-y-16 cursor-pointer"
->
-
-</a>
-        </div>
+            <a 
+              href="https://neonsnakeio.netlify.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col md:translate-y-16 cursor-pointer"
+            >
+              <div className="aspect-[4/3] bg-gradient-to-br from-brand-accent-cyan/5 to-brand-bg-card border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
+                <div className="absolute inset-0 bg-brand-bg-deep/40 group-hover:bg-transparent transition-all duration-500" />
+                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-cyan/10 transition-all duration-500">SNAKE IO</span>
+              </div>
+              <div className="mt-6 flex justify-between items-center">
+                <div>
+                  <h4 className="font-display text-lg tracking-wide text-brand-text-primary group-hover:text-brand-accent-gold transition-colors duration-300">Neon Snake IO</h4>
+                  <span className="text-xs text-brand-text-secondary uppercase tracking-wider">3D Game · Development</span>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center text-brand-text-secondary group-hover:text-brand-accent-gold group-hover:border-brand-accent-gold transition-colors duration-300">
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
       </section>
 
       {/* Large Bold Quote Section */}
