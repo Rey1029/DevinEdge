@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+  
+  /* Premium Dark Theme Color Palette */
+  --color-brand-bg-deep: #050508;
+  --color-brand-bg-card: #0e0e15;
+  --color-brand-border: #1e1e2d;
+  --color-brand-accent-gold: #d4af37;
+  --color-brand-accent-gold-light: #f3e5ab;
+  --color-brand-accent-purple: #7c3aed;
+  --color-brand-accent-cyan: #06b6d4;
+  --color-brand-text-primary: #f8fafc;
+  --color-brand-text-secondary: #94a3b8;
+}
+
+html, body {
+  background-color: #050508;
+  color: #f8fafc;
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050508;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1e2d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+.glass-panel {
+  background: rgba(14, 14, 21, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glow-gold {
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.06);
+}

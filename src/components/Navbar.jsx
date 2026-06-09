@@ -7,6 +7,23 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const handleAuth = () => {
+      const stored = localStorage.getItem('user');
+      setUser(stored ? JSON.parse(stored) : null);
+    };
+    handleAuth();
+    window.addEventListener('auth-change', handleAuth);
+    return () => window.removeEventListener('auth-change', handleAuth);
+  }, []);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.dispatchEvent(new Event('auth-change'));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,16 +93,30 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA Button */}
-          <div className="hidden lg:block">
-            <MagneticButton>
-              <Link 
-                to="/contact" 
-                className="px-5 py-2 bg-brand-accent-gold text-brand-bg-deep text-[11px] uppercase tracking-widest font-semibold hover:bg-brand-accent-gold-light transition-all duration-300 block rounded shadow-lg shadow-brand-accent-gold/10 hover:shadow-brand-accent-gold/25"
-              >
-                Start a Project
-              </Link>
-            </MagneticButton>
+          {/* Desktop CTA & Auth Section */}
+          <div className="hidden lg:flex items-center gap-4">
+            {user ? (
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-brand-text-secondary uppercase tracking-widest">
+                  Hi, <span className="text-brand-accent-gold font-bold">{user.name.split(' ')[0]}</span>
+                </span>
+                <button
+                  onClick={handleSignOut}
+                  className="px-4 py-2 border border-brand-border hover:border-brand-accent-gold/60 text-brand-text-primary hover:text-brand-accent-gold text-[10px] uppercase tracking-widest font-semibold transition-all duration-300 rounded cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <MagneticButton>
+                <Link 
+                  to="/contact" 
+                  className="px-5 py-2 bg-brand-accent-gold text-brand-bg-deep text-[11px] uppercase tracking-widest font-semibold hover:bg-brand-accent-gold-light transition-all duration-300 block rounded shadow-lg shadow-brand-accent-gold/10 hover:shadow-brand-accent-gold/25"
+                >
+                  Start a Project
+                </Link>
+              </MagneticButton>
+            )}
           </div>
 
           {/* Mobile Hamburguer Toggle */}
@@ -133,20 +164,37 @@ export default function Navbar() {
           ))}
           
           <div 
-            className="mt-6"
+            className="mt-6 w-full"
             style={{ 
               transitionDelay: mobileMenuOpen ? `${navLinks.length * 40}ms` : '0ms',
               transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(15px)',
               opacity: mobileMenuOpen ? 1 : 0
             }}
           >
-            <Link 
-              to="/contact" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-6 py-3 bg-brand-accent-gold text-brand-bg-deep text-xs uppercase tracking-widest font-semibold block text-center hover:bg-brand-accent-gold-light transition-all duration-300 rounded shadow-md"
-            >
-              Start a Project
-            </Link>
+            {user ? (
+              <div className="flex flex-col gap-3 items-center">
+                <span className="text-sm text-brand-text-secondary uppercase tracking-widest block text-center">
+                  Logged in as: <span className="text-brand-accent-gold font-bold">{user.name}</span>
+                </span>
+                <button 
+                  onClick={() => {
+                    handleSignOut();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full px-6 py-3 bg-brand-bg-card border border-brand-border hover:border-brand-accent-gold text-brand-text-primary hover:text-brand-accent-gold text-xs uppercase tracking-widest font-semibold transition-all duration-300 rounded block text-center cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <Link 
+                to="/contact" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-6 py-3 bg-brand-accent-gold text-brand-bg-deep text-xs uppercase tracking-widest font-semibold block text-center hover:bg-brand-accent-gold-light transition-all duration-300 rounded shadow-md"
+              >
+                Start a Project
+              </Link>
+            )}
           </div>
         </nav>
       </div>

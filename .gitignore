@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environments
+.env
+.env.*
+.env.local
+
+# Databases
+backend/data/
+backend/server.db
+backend/data/*.tmp

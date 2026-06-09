@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node backend/server.js",
+    "admin": "npm --prefix admin run dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\" \"npm run admin\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -25,6 +28,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^10.0.3",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
