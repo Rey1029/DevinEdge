@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import gsap from 'gsap';
 import MagneticButton from '../components/MagneticButton';
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const userCountry = localStorage.getItem('user-country') || 'US';
+  const defaultBudget = userCountry === 'IN' ? '₹15k - ₹30k' : '$5k - $10k';
+  const budgetOptions = userCountry === 'IN'
+    ? ['<₹15k', '₹15k - ₹30k', '₹30k - ₹60k', '₹60k+']
+    : ['<$5k', '$5k - $10k', '$10k - $25k', '$25k+'];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     service: 'design',
-    budget: '$5k - $10k',
+    budget: defaultBudget,
     message: ''
   });
   
@@ -22,6 +30,31 @@ export default function Contact() {
       { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out' }
     );
   }, []);
+
+  useEffect(() => {
+    const pkg = searchParams.get('package');
+    if (pkg) {
+      let serviceVal = 'design';
+      let budgetVal = defaultBudget;
+
+      if (pkg === 'starter') {
+        serviceVal = 'landing';
+        budgetVal = userCountry === 'IN' ? '<₹15k' : '<$5k';
+      } else if (pkg === 'growth') {
+        serviceVal = 'design';
+        budgetVal = userCountry === 'IN' ? '₹15k - ₹30k' : '$5k - $10k';
+      } else if (pkg === 'elite') {
+        serviceVal = 'saas';
+        budgetVal = userCountry === 'IN' ? '₹60k+' : '$25k+';
+      }
+
+      setFormData(prev => ({
+        ...prev,
+        service: serviceVal,
+        budget: budgetVal
+      }));
+    }
+  }, [searchParams, defaultBudget, userCountry]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -64,7 +97,7 @@ export default function Contact() {
       email: '',
       company: '',
       service: 'design',
-      budget: '$5k - $10k',
+      budget: defaultBudget,
       message: ''
     });
     setSubmitted(false);
@@ -179,10 +212,10 @@ export default function Contact() {
             <div className="flex flex-col gap-3 text-left">
               <label className="text-[10px] text-brand-text-secondary/50 tracking-widest uppercase">Estimated Budget</label>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {['<$5k', '$5k - $10k', '$10k - $25k', '$25k+'].map(tier => (
+                {budgetOptions.map(tier => (
                   <label 
                     key={tier}
-                    className={`py-3 text-center text-xs uppercase tracking-widest border rounded cursor-pointer transition-all duration-300 ${
+                    className={`py-3 text-center text-xs uppercase tracking-widest border rounded cursor-pointer transition-all duration-305 ${
                       formData.budget === tier
                         ? 'bg-brand-accent-gold border-brand-accent-gold text-brand-bg-deep shadow-md font-bold shadow-brand-accent-gold/20'
                         : 'bg-brand-bg-card border-brand-border/40 text-brand-text-secondary hover:border-brand-accent-gold'

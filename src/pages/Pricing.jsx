@@ -32,6 +32,27 @@ export default function Pricing() {
   const [billingCycle, setBillingCycle] = useState('one-time'); // 'one-time' or 'retainer'
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
 
+  // Timezone-based country estimation
+  const detectedTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const isIndiaTimezone = detectedTz && (
+    detectedTz.includes('Kolkata') || 
+    detectedTz.includes('Calcutta') || 
+    detectedTz.includes('Delhi') || 
+    detectedTz.includes('Mumbai')
+  );
+  const detectedRegion = isIndiaTimezone ? 'IN' : 'US';
+
+  const [country, setCountry] = useState(() => localStorage.getItem('user-country') || '');
+  const [showModal, setShowModal] = useState(() => !localStorage.getItem('user-country'));
+  const [selectedTempCountry, setSelectedTempCountry] = useState(detectedRegion);
+
+  const activeCountry = country || detectedRegion;
+
+  const handleCountryChange = (newCountry) => {
+    localStorage.setItem('user-country', newCountry);
+    setCountry(newCountry);
+  };
+
   const toggleFaq = (index) => {
     setOpenFaqIdx(openFaqIdx === index ? null : index);
   };
@@ -39,8 +60,10 @@ export default function Pricing() {
   const pricingTiers = [
     {
       name: 'Starter',
-      oneTimePrice: '$599',
-      monthlyPrice: '$19/mo',
+      prices: {
+        US: { oneTime: '$599', monthly: '$19/mo' },
+        IN: { oneTime: '₹10k - ₹15k', monthly: '₹1k - ₹1.5k/mo' }
+      },
       desc: 'Perfect for small businesses seeking an elite single-page promo or a basic 5-page editorial site.',
       features: [
         'Custom Design (no templates)',
@@ -55,8 +78,10 @@ export default function Pricing() {
     },
     {
       name: 'Growth',
-      oneTimePrice: '$799',
-      monthlyPrice: '$39/mo',
+      prices: {
+        US: { oneTime: '$799', monthly: '$39/mo' },
+        IN: { oneTime: '₹20k - ₹25k', monthly: '₹2k - ₹2.5k/mo' }
+      },
       desc: 'Our flagship tier for established brands needing custom UI elements, full CMS control, and 3D scenes.',
       features: [
         'Custom Web Design & Layouts',
@@ -72,8 +97,10 @@ export default function Pricing() {
     },
     {
       name: 'Elite',
-      oneTimePrice: '$999',
-      monthlyPrice: '$99/mo',
+      prices: {
+        US: { oneTime: '$999', monthly: '$99/mo' },
+        IN: { oneTime: '₹50k - ₹60k', monthly: '₹5k - ₹6k/mo' }
+      },
       desc: 'For global enterprises requiring custom web products, advanced shaders, and high-security SaaS portals.',
       features: [
         'Full Custom Web Architectures',
@@ -128,9 +155,10 @@ export default function Pricing() {
         <div className="h-[2px] bg-gradient-to-r from-brand-accent-gold to-transparent mt-6 w-32" />
       </section>
 
-      {/* Retainer Toggle */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 mb-20 flex justify-center">
-        <div className="bg-brand-bg-card border border-brand-border/40 p-1 flex rounded relative z-10">
+      {/* Selector Controls (Billing & Region) */}
+      <section className="max-w-7xl mx-auto px-6 md:px-12 mb-20 flex flex-col md:flex-row gap-4 items-center justify-center relative z-10">
+        {/* Retainer Toggle */}
+        <div className="bg-brand-bg-card border border-brand-border/40 p-1 flex rounded">
           <button
             onClick={() => setBillingCycle('one-time')}
             className={`px-6 py-2.5 text-xs uppercase tracking-widest font-semibold rounded transition-all duration-305 interactive ${
@@ -150,6 +178,30 @@ export default function Pricing() {
             }`}
           >
             Monthly Retainer
+          </button>
+        </div>
+
+        {/* Region Switcher */}
+        <div className="bg-brand-bg-card border border-brand-border/40 p-1 flex rounded">
+          <button
+            onClick={() => handleCountryChange('US')}
+            className={`px-5 py-2.5 text-xs uppercase tracking-widest font-semibold rounded transition-all duration-305 interactive flex items-center gap-2 ${
+              activeCountry === 'US'
+                ? 'bg-brand-accent-gold text-brand-bg-deep shadow-md font-bold'
+                : 'text-brand-text-secondary hover:text-brand-text-primary'
+            }`}
+          >
+            <span className="text-sm">🇺🇸</span> USD ($)
+          </button>
+          <button
+            onClick={() => handleCountryChange('IN')}
+            className={`px-5 py-2.5 text-xs uppercase tracking-widest font-semibold rounded transition-all duration-305 interactive flex items-center gap-2 ${
+              activeCountry === 'IN'
+                ? 'bg-brand-accent-gold text-brand-bg-deep shadow-md font-bold'
+                : 'text-brand-text-secondary hover:text-brand-text-primary'
+            }`}
+          >
+            <span className="text-sm">🇮🇳</span> INR (₹)
           </button>
         </div>
       </section>
@@ -180,8 +232,8 @@ export default function Pricing() {
                 }`}>{tier.name}</h3>
                 
                 <div className="mt-4 flex items-baseline gap-2">
-                  <span className="font-display text-5xl md:text-6xl font-semibold text-brand-text-primary transition-all duration-500">
-                    {billingCycle === 'one-time' ? tier.oneTimePrice : tier.monthlyPrice}
+                  <span className="font-display text-4xl md:text-5xl font-semibold text-brand-text-primary transition-all duration-500">
+                    {billingCycle === 'one-time' ? tier.prices[activeCountry].oneTime : tier.prices[activeCountry].monthly}
                   </span>
                   <span className="text-[10px] text-brand-text-secondary uppercase tracking-widest font-semibold">
                     {billingCycle === 'one-time' ? 'Project' : ''}
@@ -261,6 +313,82 @@ export default function Pricing() {
           </MagneticButton>
         </div>
       </section>
+
+      {/* Country Selection Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-brand-bg-deep/85 z-[99999] flex items-center justify-center p-6 backdrop-blur-md animate-[fade-in_0.5s_forwards]">
+          <div className="glass-panel border border-brand-accent-gold/20 p-8 md:p-12 rounded max-w-md w-full text-center flex flex-col items-center gap-6 shadow-2xl glow-gold relative z-10">
+            
+            <div className="w-16 h-16 rounded-full border border-brand-accent-gold bg-brand-accent-gold/10 flex items-center justify-center text-brand-accent-gold text-2xl mb-2">
+              🌐
+            </div>
+            
+            <h2 className="font-display font-semibold text-2xl text-brand-text-primary tracking-widest uppercase">
+              SELECT YOUR REGION
+            </h2>
+            
+            <p className="text-brand-text-secondary text-sm leading-relaxed max-w-xs">
+              Please choose your country to see tailored project rates and billing cycles.
+            </p>
+
+            {/* Country Selection Options */}
+            <div className="w-full flex flex-col gap-4 mt-2">
+              <button
+                type="button"
+                onClick={() => setSelectedTempCountry('US')}
+                className={`w-full py-4 px-6 rounded border text-left text-sm font-semibold flex items-center justify-between transition-all duration-300 interactive ${
+                  selectedTempCountry === 'US'
+                    ? 'border-brand-accent-gold bg-brand-accent-gold/5 text-brand-text-primary glow-gold'
+                    : 'border-brand-border/40 bg-brand-bg-card/40 text-brand-text-secondary hover:border-brand-accent-gold/60'
+                }`}
+              >
+                <span className="flex items-center gap-3">
+                  <span className="text-xl">🇺🇸</span>
+                  <span>United States / International</span>
+                </span>
+                <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                  selectedTempCountry === 'US' ? 'border-brand-accent-gold bg-brand-accent-gold' : 'border-brand-text-secondary/30'
+                }`}>
+                  {selectedTempCountry === 'US' && <span className="w-1.5 h-1.5 rounded-full bg-brand-bg-deep" />}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSelectedTempCountry('IN')}
+                className={`w-full py-4 px-6 rounded border text-left text-sm font-semibold flex items-center justify-between transition-all duration-300 interactive ${
+                  selectedTempCountry === 'IN'
+                    ? 'border-brand-accent-gold bg-brand-accent-gold/5 text-brand-text-primary glow-gold'
+                    : 'border-brand-border/40 bg-brand-bg-card/40 text-brand-text-secondary hover:border-brand-accent-gold/60'
+                }`}
+              >
+                <span className="flex items-center gap-3">
+                  <span className="text-xl">🇮🇳</span>
+                  <span>India</span>
+                </span>
+                <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                  selectedTempCountry === 'IN' ? 'border-brand-accent-gold bg-brand-accent-gold' : 'border-brand-text-secondary/30'
+                }`}>
+                  {selectedTempCountry === 'IN' && <span className="w-1.5 h-1.5 rounded-full bg-brand-bg-deep" />}
+                </span>
+              </button>
+            </div>
+
+            <div className="h-[1px] bg-brand-border/40 w-full my-2" />
+
+            <button
+              onClick={() => {
+                localStorage.setItem('user-country', selectedTempCountry);
+                setCountry(selectedTempCountry);
+                setShowModal(false);
+              }}
+              className="w-full py-4 bg-brand-accent-gold text-brand-bg-deep hover:bg-brand-accent-gold-light text-xs uppercase tracking-widest font-semibold transition-all duration-300 interactive rounded shadow-md font-bold"
+            >
+              Confirm Region
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
