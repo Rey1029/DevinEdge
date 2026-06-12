@@ -47,7 +47,7 @@ export default function App() {
 
   // 2. Lenis Smooth Scroll Initialization
   useEffect(() => {
-    // Skip lenis initialization on mobile screens for scrolling performance
+    // Skip lenis initialization on mobile devices for better performance and native feel
     const isMobile = window.matchMedia('(max-width: 1024px)').matches;
     if (isMobile) return;
 

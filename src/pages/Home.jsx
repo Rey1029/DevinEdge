@@ -207,9 +207,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col md:translate-y-8 cursor-pointer"
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-brand-accent-purple/5 to-brand-bg-card border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
-                <div className="absolute inset-0 bg-brand-bg-deep/40 group-hover:bg-transparent transition-all duration-500" />
-                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-purple/10 transition-all duration-500">PUNJABI</span>
+              <div className="aspect-[4/3] border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
+                <img 
+                  src="/punjabi.png" 
+                  alt="Eat Like Punjabi" 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-brand-bg-deep/50 group-hover:bg-brand-bg-deep/20 transition-all duration-500" />
+                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-purple/10 transition-all duration-500 z-10 pointer-events-none">PUNJABI</span>
               </div>
               <div className="mt-6 flex justify-between items-center">
                 <div>
@@ -229,9 +234,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col cursor-pointer"
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-brand-accent-gold/5 to-brand-bg-card border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
-                <div className="absolute inset-0 bg-brand-bg-deep/40 group-hover:bg-transparent transition-all duration-500" />
-                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-gold/10 transition-all duration-500">CORE GYM</span>
+              <div className="aspect-[4/3] border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
+                <img 
+                  src="/gym.png" 
+                  alt="To The Core Fitness Gym" 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-brand-bg-deep/50 group-hover:bg-brand-bg-deep/20 transition-all duration-500" />
+                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-gold/10 transition-all duration-500 z-10 pointer-events-none">CORE GYM</span>
               </div>
               <div className="mt-6 flex justify-between items-center">
                 <div>
@@ -251,9 +261,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group relative glass-panel border border-brand-border/40 p-5 overflow-hidden rounded transition-all duration-500 hover:border-brand-accent-gold/40 hover:glow-gold flex flex-col md:translate-y-16 cursor-pointer"
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-brand-accent-cyan/5 to-brand-bg-card border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
-                <div className="absolute inset-0 bg-brand-bg-deep/40 group-hover:bg-transparent transition-all duration-500" />
-                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-cyan/10 transition-all duration-500">SNAKE IO</span>
+              <div className="aspect-[4/3] border border-brand-border/40 flex items-center justify-center relative overflow-hidden rounded">
+                <img 
+                  src="/snake.png" 
+                  alt="Neon Snake IO" 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-brand-bg-deep/50 group-hover:bg-brand-bg-deep/20 transition-all duration-500" />
+                <span className="font-display text-5xl md:text-6xl text-brand-text-secondary/5 select-none font-extrabold group-hover:text-brand-accent-cyan/10 transition-all duration-500 z-10 pointer-events-none">SNAKE IO</span>
               </div>
               <div className="mt-6 flex justify-between items-center">
                 <div>
